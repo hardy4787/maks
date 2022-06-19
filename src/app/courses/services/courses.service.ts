@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Course } from "../../core/models/course.interface";
-import { COURSES } from "../../core/models/constants";
+import { Course } from '../../core/models/course.interface';
+import { COURSES } from '../../core/models/constants';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CoursesService {
-  private courses: Course[];
+  private courses: Course[] = COURSES;
 
-  constructor() { }
+  constructor() {}
 
   getList(): Course[] {
-    this.courses = COURSES;
     return this.courses;
   }
 
@@ -22,11 +21,11 @@ export class CoursesService {
   }
 
   getCourseItem(id: number): Course {
-    return this.courses.find(course => course?.id === id) as Course;
+    return this.courses.find((course) => course?.id === id) as Course;
   }
 
   getLastCoursesId(): number {
-    return this.courses.length;
+    return this.courses.length + 1;
   }
 
   removeCourseItem(id: number): Course[] {
@@ -35,7 +34,10 @@ export class CoursesService {
     return this.courses;
   }
 
-  updateCourseItem(id: number): Course[] {
+  updateCourseItem(course: Course): Course[] {
+    let updateItem = this.getCourseItem(course.id);
+    let index = this.courses.indexOf(updateItem);
+    this.courses[index] = course;
     return this.courses;
   }
 }

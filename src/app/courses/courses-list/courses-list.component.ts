@@ -11,14 +11,9 @@ export class CoursesListComponent {
   @Input() searchValue: string;
   @Input() courses: Course[];
   @Output() courseDeleted = new EventEmitter<number>();
-  @Output() courseEdited = new EventEmitter<number>();
 
   courseTrackBy(index: number, course: Course): number {
     return course.id;
-  }
-
-  courseEdit(id: number): void  {
-    this.courseEdited.emit(id);
   }
 
   courseDelete(id: number): void  {

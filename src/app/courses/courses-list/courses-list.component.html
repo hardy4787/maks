@@ -3,7 +3,7 @@
     *ngFor="let course of courses | orderBy: 'creationDate' | filter: searchValue; trackBy:courseTrackBy"
     [item]="course"
     (courseDeleted)="courseDelete($event)"
-    (courseEdited)="courseEdit($event)">
+    >
   </app-course-item>
 </ng-container>
 

@@ -30,8 +30,4 @@ export class CoursesComponent implements OnInit {
       this.courses = this.coursesService.removeCourseItem(id);
     }
   }
-
-  onUpdateCourse(id: number): void {
-    this.courses = this.coursesService.updateCourseItem(id);
-  }
 }

@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from "../../core/models/course.interface";
-import { CoursesService } from "../services/courses.service";
-import { ActivatedRoute } from "@angular/router";
-import {filter} from "rxjs";
+import { Course } from '../../core/models/course.interface';
+import { CoursesService } from '../services/courses.service';
+import { ActivatedRoute } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-course-editor',
   templateUrl: './course-editor.component.html',
-  styleUrls: ['./course-editor.component.less']
+  styleUrls: ['./course-editor.component.less'],
 })
 export class CourseEditorComponent implements OnInit {
-  private course: Course;
   private isEditMode: boolean;
+  private course: Course;
 
   inputTitleValue: string;
   inputDescriptionValue: string;
@@ -20,36 +20,38 @@ export class CourseEditorComponent implements OnInit {
 
   constructor(
     private coursesService: CoursesService,
-    private activetedRoute: ActivatedRoute
-  ) { }
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.activetedRoute.params.subscribe(({ id }) => {
+    this.activatedRoute.params.subscribe(({ id }) => {
       if (id) {
-        this.course = this.coursesService.getCourseItem(id);
         this.isEditMode = true;
+        this.course = this.coursesService.getCourseItem(Number(id));
+        this.fillForm();
       }
-    })
+    });
   }
 
-  onCourseSave() {
-    this.coursesService.createCourse(this.fillCourse());
-  }
+  onCourseSave = () =>
+    this.isEditMode
+      ? this.coursesService.updateCourseItem(this.fillCourse(this.course.id))
+      : this.coursesService.createCourse(this.fillCourse());
 
-  private fillCourse(): Course {
+  private fillCourse(id?: number): Course {
     return {
-      id: this.isEditMode ? this.course.id : this.coursesService.getLastCoursesId(),
+      id: id ?? this.coursesService.getLastCoursesId(),
       title: this.inputTitleValue,
       description: this.inputDescriptionValue,
       duration: this.inputDurationValue,
       creationDate: this.inputDateValue,
-    }
+    };
   }
 
-  private fillForm(course: Course): void {
-    this.inputTitleValue = course.title;
-    this.inputDescriptionValue = course.description;
-    this.inputDurationValue = course.duration;
-    this.inputDateValue = course.creationDate;
+  private fillForm(): void {
+    this.inputTitleValue = this.course.title;
+    this.inputDescriptionValue = this.course.description;
+    this.inputDurationValue = this.course.duration;
+    this.inputDateValue = this.course.creationDate;
   }
 }

@@ -8,18 +8,9 @@ import {Course} from "../../core/models/course.interface";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class CourseItemComponent implements OnInit {
+export class CourseItemComponent {
   @Input() item: Course;
   @Output() courseDeleted = new EventEmitter<number>();
-  @Output() courseEdited = new EventEmitter<number>();
-
-  ngOnInit() {
-
-  }
-
-  onCourseEdit(): void {
-    this.courseEdited.emit(this.item.id);
-  }
 
   onCourseDelete(): void {
     this.courseDeleted.emit(this.item.id);
