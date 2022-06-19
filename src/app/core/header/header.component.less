@@ -1,0 +1,42 @@
+@import "../../../less/variables";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0 85px;
+  color: @white;
+  background: #303240;
+
+  &__logo {
+    height: 28px;
+    width: 28px;
+    transform: rotate(90deg);
+  }
+
+  &__title {
+    color: @white;
+    font-size: 18px;
+    font-family: "SourceSansPro-Bold", serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    word-break: normal;
+  }
+
+  &__icon {
+    color: white;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  &__authorization {
+    display: flex;
+    gap: 24px;
+  }
+}

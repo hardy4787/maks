@@ -1,0 +1,23 @@
+<div class="main">
+  <app-header-banner></app-header-banner>
+
+  <app-autocomplete (searchedValue)="onFilterCourses($event)"></app-autocomplete>
+
+  <div class="add__section">
+    <button class="add__button"
+            mat-raised-button
+            color="primary"
+            [routerLink]="['new']">
+      <i class="fa-solid fa-circle-plus"></i> Add course
+    </button>
+  </div>
+
+  <app-courses-list
+    [searchValue]="searchValue"
+    [courses]="courses"
+    (courseDeleted)="onDeleteCourse($event)"
+    (courseEdited)="onUpdateCourse($event)">
+  </app-courses-list>
+
+  <app-load-more></app-load-more>
+</div>

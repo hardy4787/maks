@@ -1,0 +1,20 @@
+<form class="autocomplete">
+    <input class="autocomplete__input"
+           placeholder="Type to search"
+           type="text"
+           aria-label="Number"
+           [(ngModel)]="searchValue"
+           [formControl]="myControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let item of filteredCourses | async" [value]="item.title">
+        {{item.title}}
+      </mat-option>
+    </mat-autocomplete>
+  <button class="autocomplete__button"
+          mat-raised-button
+          type="button"
+          (click)="autocompleteLog(searchValue)">
+    Search
+  </button>
+</form>

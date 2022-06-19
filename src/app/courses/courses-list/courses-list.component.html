@@ -1,0 +1,14 @@
+<ng-container *ngIf="courses.length; else noData">
+  <app-course-item
+    *ngFor="let course of courses | orderBy: 'creationDate' | filter: searchValue; trackBy:courseTrackBy"
+    [item]="course"
+    (courseDeleted)="courseDelete($event)"
+    (courseEdited)="courseEdit($event)">
+  </app-course-item>
+</ng-container>
+
+<ng-template #noData>
+  <mat-card class="courses-card">
+    <mat-card-subtitle class="courses-card__main">No data, feel free to add new course</mat-card-subtitle>
+  </mat-card>
+</ng-template>

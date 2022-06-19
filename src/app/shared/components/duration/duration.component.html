@@ -1,0 +1,4 @@
+<mat-form-field class="duration__wrapper" appearance="fill">
+  <input matInput type="text" [ngModel]="inputDurationValue" (ngModelChange)="changeInputValue($event)">
+</mat-form-field>
+<span *ngIf="inputDurationValue" class="duration__formatted">{{inputDurationValue | duration}}</span>

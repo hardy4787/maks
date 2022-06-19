@@ -1,0 +1,36 @@
+<div class="add-course">
+  <mat-form-field class="add-course__title add-course__element" appearance="fill">
+    <mat-label>Create title</mat-label>
+    <input matInput type="text" [(ngModel)]="inputTitleValue">
+    <button *ngIf="inputTitleValue" matSuffix mat-icon-button aria-label="Clear" (click)="inputTitleValue=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field class="add-course__description add-course__element" appearance="fill">
+    <textarea matInput
+              placeholder="Create description for your course"
+              [(ngModel)]="inputDescriptionValue"></textarea>
+  </mat-form-field>
+
+  <app-date-picker class="add-course__date add-course__element" (dateChanged)="inputDateValue=$event">
+  </app-date-picker>
+
+  <app-duration class="add-course__duration add-course__element" (durationChanged)="inputDurationValue=$event">
+  </app-duration>
+
+  <app-authors class="add-course__authors add-course__element">
+  </app-authors>
+
+  <mat-card-actions align="start">
+    <button mat-button class="btn btn__save"
+            (click)="onCourseSave()"
+            [routerLink]="['/courses']">
+      Save
+    </button>
+    <button mat-button class="btn btn__cancel"
+            [routerLink]="['/courses']">
+      Cancel
+    </button>
+  </mat-card-actions>
+</div>

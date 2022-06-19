@@ -1,0 +1,16 @@
+<mat-form-field class="authors__wrapper" appearance="fill">
+  <mat-label>Authors</mat-label>
+  <mat-chip-list #chipList aria-label="Fruit selection" class="authors__chip-list">
+    <mat-chip *ngFor="let author of authors" (removed)="remove(author)">
+      {{author.name}}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+    <input placeholder="New author..."
+           [matChipInputFor]="chipList"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="addOnBlur"
+           (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+</mat-form-field>

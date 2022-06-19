@@ -1,0 +1,42 @@
+<div class="authentication__wrapper">
+  <mat-card class="authentication__card">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content class="authentication__content">
+      <mat-form-field class="authentication__login" appearance="fill">
+        <mat-label>Username</mat-label>
+        <input type="text"
+               class="form-control"
+               name="username"
+               [(ngModel)]="form.username"
+               required
+               matInput>
+      </mat-form-field>
+      <mat-form-field class="authentication__password" appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input type="password"
+               class="form-control"
+               name="password"
+               [(ngModel)]="form.password"
+               required
+               minlength="6"
+               matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </mat-card-content>
+    <div class="authentication__panel">
+      <a href="#">Forgot your password?</a>
+      <button mat-button class="authentication__submit"
+              type="submit"
+              (click)="onSubmit()"
+              [routerLink]="['/courses']">
+        Login
+      </button>
+    </div>
+  </mat-card>
+</div>
+

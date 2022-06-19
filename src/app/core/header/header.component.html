@@ -1,0 +1,18 @@
+<div class="header">
+  <div class="header__wrapper"  [routerLink]="['courses']">
+    <img class="header__logo" src="../../../assets/logo.svg" alt="logo">
+    <p class="header__title">VIDEO COURSE</p>
+  </div>
+  <div class="header__authorization">
+    <div class="header__wrapper">
+      <i class="header__icon fa-solid fa-user"></i>
+      <p>User Login</p>
+    </div>
+    <div class="header__wrapper"
+         (click)="onLogout()"
+         [routerLink]="['/login']">
+      <i class="header__icon fa-solid fa-arrow-right-from-bracket"></i>
+      <p>Log out</p>
+    </div>
+  </div>
+</div>
